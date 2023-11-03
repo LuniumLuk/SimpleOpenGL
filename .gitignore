@@ -396,3 +396,21 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+Bin/
+Bin-int/
+imgui.ini
+
+!Vendor/**
+
+Vendor/assimp/test/**
+Vendor/assimp/port/**
+Vendor/assimp/samples/**
+Vendor/assimp/tools/**
+Vendor/assimp/scripts/**
+
+Vendor/glfw/docs/**
+Vendor/glm/doc/**
+Vendor/glm/test/**
+
+Vendor/imgui/examples/**

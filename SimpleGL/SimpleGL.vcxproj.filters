@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SimpleGL">
+      <UniqueIdentifier>{222F18AE-0EFC-72B9-3715-61612341A847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SimpleGL\Core">
+      <UniqueIdentifier>{BA185632-26D9-D168-EF13-1BE65B931645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SimpleGL\Vendor">
+      <UniqueIdentifier>{1F17DA4B-8BA2-4710-94B3-CA0400BEA310}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PCH.h" />
+    <ClInclude Include="SimpleGL.h" />
+    <ClInclude Include="SimpleGL\Core\Application.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Buffer.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\IO.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\ImGuiHelper.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Log.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Maths.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Mesh.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Model.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Shader.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Texture.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Timer.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Types.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Core\Window.h">
+      <Filter>SimpleGL\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PCH.cpp" />
+    <ClCompile Include="SimpleGL\Core\Application.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Buffer.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Mesh.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Model.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Shader.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Texture.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Core\Window.cpp">
+      <Filter>SimpleGL\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Vendor\ImGuiBuild.cpp">
+      <Filter>SimpleGL\Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Vendor\StbBuild.cpp">
+      <Filter>SimpleGL\Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Vendor\TinyexrBuild.cpp">
+      <Filter>SimpleGL\Vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyObjLoaderBuild.cpp" />
+  </ItemGroup>
+</Project>
