@@ -9,7 +9,6 @@ workspace "SimpleGL"
     }
 
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-    enginedir = path.getabsolute("%{prj.name}")
 
     includedir = {}
     includedir["GLFW"] = "Vendor/glfw/include"
@@ -122,7 +121,8 @@ workspace "SimpleGL"
             systemversion "latest"
             defines
             {
-                "SGL_ENABLE_ASSERTS"
+                "SGL_ENABLE_ASSERTS",
+                "SGL_SANDBOX_DIR=\"" .. path.getabsolute("%{prj.name}") .. "/\"",
             }
 
         filter "configurations:Debug"

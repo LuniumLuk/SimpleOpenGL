@@ -12,7 +12,7 @@ namespace SGL {
         std::string name = "SimpleGL";
         uint32_t width = 720;
         uint32_t height = 720;
-        bool fullScreen = false;
+        bool fullscreen = false;
         bool vsync = true;
         bool debug = true;
         bool resizable = true;
@@ -41,6 +41,9 @@ namespace SGL {
 
         Window& operator=(Window const&) = delete;
         Window(Window const&) = delete;
+
+        uint32_t getWidth() const noexcept { return windowData.width; }
+        uint32_t getHeight() const noexcept { return windowData.height; }
 
         void preframe() noexcept;
         bool update() noexcept;

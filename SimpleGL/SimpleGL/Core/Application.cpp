@@ -5,15 +5,23 @@
 
 namespace SGL {
 
-    Application::Application(WindowOption const& opt) noexcept : window(opt) {
-
+    void Application::createWindow(WindowOption const& opt) noexcept {
+        if (window) {
+            SGL_LOG_WARN("Window already initialized");
+            return;
+        }
+        window = new Window(opt);
     }
 
     void Application::run() noexcept {
         init();
+        if (!window) {
+            SGL_LOG_WARN("Window not initialized, using default configuration");
+            window = new Window(WindowOption());
+        }
         while (!shouldExit) {
-            window.preframe();
-            if (!window.update())
+            window->preframe();
+            if (!window->update())
                 break;
 
             timer.update();
@@ -25,7 +33,7 @@ namespace SGL {
                 accumulatedTime -= fixedUpdateDelta;
             }
             update(deltaTime);
-            window.endframe();
+            window->endframe();
         }
     }
 

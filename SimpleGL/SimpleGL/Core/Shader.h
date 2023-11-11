@@ -6,6 +6,10 @@
 
 namespace SGL {
 
+#define SGL_INVALID_INDEX ~0U
+#define SGL_INVALID_LOCATION ~0U
+#define SGL_INVALID_BINDING ~0U
+
     struct ShaderModule {
 
         unsigned int handle;
@@ -17,18 +21,61 @@ namespace SGL {
 
     };
 
+    struct ShaderVariable {
+        std::string name;
+        DataType type;
+        uint32_t count;
+        uint32_t location;
+
+        ShaderVariable(std::string const& name, DataType type, uint32_t count, uint32_t location)
+            : name(name), type(type), count(count), location(location) {}
+    };
+
+    struct ShaderUniformBlock {
+        std::string name;
+        uint32_t size;
+        uint32_t binding;
+        std::vector<ShaderVariable> variables;
+
+        ShaderUniformBlock(std::string const& name, uint32_t size, uint32_t binding, std::vector<ShaderVariable> const& variables)
+            : name(name), size(size), binding(binding), variables(variables) {}
+    };
+
     struct Shader {
 
         unsigned int handle;
+        std::vector<ShaderVariable> attributes;
+        std::vector<ShaderVariable> uniforms;
+        std::vector<ShaderUniformBlock> uniformBlocks;
+        std::unordered_map<std::string, uint32_t> attributeIndices;
+        std::unordered_map<std::string, uint32_t> uniformIndices;
+        std::unordered_map<std::string, uint32_t> uniformBlockIndices;
 
-        Shader(std::initializer_list<ShaderModule*> shaders);
+        Shader(std::string const& path) noexcept;
+        Shader(std::initializer_list<ShaderModule*> shaders) noexcept;
         Shader(Shader const&) = delete;
         Shader(Shader&& other) noexcept;
         ~Shader();
 
-        void use() const noexcept;
+        void bind() const noexcept;
         void bind(StorageBuffer const& buffer, uint32_t index, std::string const& name) const noexcept;
         void bind(UniformBuffer const& buffer, uint32_t index, std::string const& name) const noexcept;
+
+        bool hasUniform(std::string const& name) const noexcept;
+        void setUniform(std::string const& name, void const* data) noexcept;
+        void setUniformBinding(std::string const& name, uint32_t binding) noexcept;
+        void setUniformBlockBinding(std::string const& name, uint32_t binding) noexcept;
+
+        void setUniformBinding(uint32_t location, uint32_t binding) noexcept;
+        void setUniformBlockBinding(uint32_t location, uint32_t binding) noexcept;
+
+        void getUniform(std::string const& name, void* ptr, size_t size) noexcept;
+        uint32_t getUniformLocation(std::string const& name) noexcept;
+        uint32_t getUniformBlockLocation(std::string const& name) noexcept;
+        uint32_t getUniformBinding(std::string const& name) noexcept;
+        uint32_t getUniformBlockBinding(std::string const& name) noexcept;
+
+        void linkShader(std::vector<ShaderModule*> const& shaders) noexcept;
 
         void setBool(std::string const& name, bool value) const noexcept;
         void setInt(std::string const& name, int value) const noexcept;

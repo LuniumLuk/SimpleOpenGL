@@ -33,6 +33,8 @@ namespace SGL {
         Bool,
         Mat3,
         Mat4,
+        Sampler2D,
+        SamplerCube,
     };
 
     constexpr inline uint32_t getDataTypeSize(DataType type) noexcept {
@@ -72,6 +74,7 @@ namespace SGL {
     };
 
     enum struct ShaderModuleType {
+        None,
         Geometry,
         Vertex,
         Fragment,

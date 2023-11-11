@@ -7,13 +7,15 @@ namespace SGL {
 
     struct Application {
 
-        Application(WindowOption const& opt) noexcept;
+        Application() = default;
 
         double const fixedUpdateDelta = 0.016;
         double accumulatedTime = 0.0;
         bool shouldExit = false;
-        Window window;
+        Window* window = nullptr;
         Timer timer;
+
+        void createWindow(WindowOption const& opt) noexcept;
 
         void run() noexcept;
         void terminate() noexcept;

@@ -58,7 +58,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SGL_ENABLE_ASSERTS;SGL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SGL_ENABLE_ASSERTS;SGL_SANDBOX_DIR="D:/Github/SimpleOpenGL/Sandbox/";SGL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\SimpleGL;.;..\Vendor;..\Vendor\glfw\include;..\Vendor\glad\include;..\Vendor\imgui;..\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -75,7 +75,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SGL_ENABLE_ASSERTS;SGL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SGL_ENABLE_ASSERTS;SGL_SANDBOX_DIR="D:/Github/SimpleOpenGL/Sandbox/";SGL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\SimpleGL;.;..\Vendor;..\Vendor\glfw\include;..\Vendor\glad\include;..\Vendor\imgui;..\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -93,6 +93,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Apps\Common.h" />
+    <ClInclude Include="Apps\Triangle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Apps\Triangle.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>

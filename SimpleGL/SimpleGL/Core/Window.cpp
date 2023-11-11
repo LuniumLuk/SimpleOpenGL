@@ -22,7 +22,7 @@ namespace SGL {
         int windowWidth = opt.width;
         int windowHeight = opt.height;
 
-        if (opt.fullScreen) {
+        if (opt.fullscreen) {
             glfwWindowHint(GLFW_DECORATED, false);
             windowWidth = screenWidth;
             windowHeight = screenHeight;
@@ -38,7 +38,7 @@ namespace SGL {
         glfwSetWindowUserPointer(glfwHandle, &windowData);
 
         SGL_LOG_INFO("Initilizing GLFW window, width: {0}, height: {1}", windowWidth, windowHeight);
-        if (opt.fullScreen) {
+        if (opt.fullscreen) {
             windowData.width = GetSystemMetrics(SM_CXSCREEN);
             windowData.height = GetSystemMetrics(SM_CYSCREEN);
             glfwSetWindowPos(glfwHandle, 0, 0);
