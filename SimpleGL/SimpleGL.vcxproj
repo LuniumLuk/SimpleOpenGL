@@ -114,6 +114,9 @@
     <ClInclude Include="SimpleGL\Core\Timer.h" />
     <ClInclude Include="SimpleGL\Core\Types.h" />
     <ClInclude Include="SimpleGL\Core\Window.h" />
+    <ClInclude Include="SimpleGL\Utility\BVH.h" />
+    <ClInclude Include="SimpleGL\Utility\Camera.h" />
+    <ClInclude Include="SimpleGL\Utility\Intersect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PCH.cpp">
@@ -126,10 +129,13 @@
     <ClCompile Include="SimpleGL\Core\Shader.cpp" />
     <ClCompile Include="SimpleGL\Core\Texture.cpp" />
     <ClCompile Include="SimpleGL\Core\Window.cpp" />
+    <ClCompile Include="SimpleGL\Utility\BVH.cpp" />
+    <ClCompile Include="SimpleGL\Utility\Camera.cpp" />
+    <ClCompile Include="SimpleGL\Utility\Intersect.cpp" />
     <ClCompile Include="SimpleGL\Vendor\ImGuiBuild.cpp" />
     <ClCompile Include="SimpleGL\Vendor\StbBuild.cpp" />
+    <ClCompile Include="SimpleGL\Vendor\TinyObjLoaderBuild.cpp" />
     <ClCompile Include="SimpleGL\Vendor\TinyexrBuild.cpp" />
-    <ClCompile Include="TinyObjLoaderBuild.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vendor\glfw\GLFW.vcxproj">

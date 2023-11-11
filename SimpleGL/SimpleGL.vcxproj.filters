@@ -7,6 +7,9 @@
     <Filter Include="SimpleGL\Core">
       <UniqueIdentifier>{BA185632-26D9-D168-EF13-1BE65B931645}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SimpleGL\Utility">
+      <UniqueIdentifier>{65EFC99C-51E8-E8EE-7A1A-CE736672C8FA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SimpleGL\Vendor">
       <UniqueIdentifier>{1F17DA4B-8BA2-4710-94B3-CA0400BEA310}</UniqueIdentifier>
     </Filter>
@@ -53,6 +56,15 @@
     <ClInclude Include="SimpleGL\Core\Window.h">
       <Filter>SimpleGL\Core</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleGL\Utility\BVH.h">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Utility\Camera.h">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleGL\Utility\Intersect.h">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PCH.cpp" />
@@ -77,15 +89,26 @@
     <ClCompile Include="SimpleGL\Core\Window.cpp">
       <Filter>SimpleGL\Core</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleGL\Utility\BVH.cpp">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Utility\Camera.cpp">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Utility\Intersect.cpp">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClCompile>
     <ClCompile Include="SimpleGL\Vendor\ImGuiBuild.cpp">
       <Filter>SimpleGL\Vendor</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGL\Vendor\StbBuild.cpp">
       <Filter>SimpleGL\Vendor</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleGL\Vendor\TinyObjLoaderBuild.cpp">
+      <Filter>SimpleGL\Vendor</Filter>
+    </ClCompile>
     <ClCompile Include="SimpleGL\Vendor\TinyexrBuild.cpp">
       <Filter>SimpleGL\Vendor</Filter>
     </ClCompile>
-    <ClCompile Include="TinyObjLoaderBuild.cpp" />
   </ItemGroup>
 </Project>

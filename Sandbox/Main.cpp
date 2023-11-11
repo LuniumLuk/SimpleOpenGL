@@ -27,7 +27,11 @@ struct MyApp : sgl::Application {
 
 int main() {
     auto opt = sgl::WindowOption();
-    opt.fullScreen = true;
+    opt.width = 1280;
+    opt.height = 720;
+    opt.name = "Sandbox";
+    opt.resizable = true;
+    //opt.fullScreen = true;
     auto app = MyApp(opt);
     app.run();
 
