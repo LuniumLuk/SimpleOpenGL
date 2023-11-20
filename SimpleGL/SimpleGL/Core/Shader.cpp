@@ -33,7 +33,7 @@ namespace SGL {
         glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(handle, 512, nullptr, infoLog);
-            SGL_LOG_ERROR("Shader compile failed: {0}", infoLog);
+            SGL_LOG_ERROR("Shader compile failed:\n{0}", infoLog);
         }
     }
 
@@ -314,7 +314,7 @@ namespace SGL {
         glGetProgramiv(handle, GL_LINK_STATUS, &success);
         if (!success) {
             glGetProgramInfoLog(handle, 512, NULL, infoLog);
-            SGL_ASSERT(false, "Shader link failed: {0}", infoLog);
+            SGL_ASSERT(false, "Shader link failed:\n{0}", infoLog);
         }
 
         GLint count;

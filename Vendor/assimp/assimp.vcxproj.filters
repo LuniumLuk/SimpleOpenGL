@@ -13,6 +13,12 @@
     <Filter Include="code\Common">
       <UniqueIdentifier>{B8FBBEBB-24B1-37B1-ADA5-3188195A2EB5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="code\Geometry">
+      <UniqueIdentifier>{DBBB525B-477C-CE91-10B7-170F7C36136E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\Material">
+      <UniqueIdentifier>{1EBD14BC-8A7D-90F2-53B8-D96FBF37D5CE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="code\PostProcessing">
       <UniqueIdentifier>{722971A1-DE8A-4EAF-67F8-9461D358856E}</UniqueIdentifier>
     </Filter>
@@ -110,6 +116,12 @@
     </ClInclude>
     <ClInclude Include="code\Common\simd.h">
       <Filter>code\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Geometry\GeometryUtils.h">
+      <Filter>code\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Material\MaterialSystem.h">
+      <Filter>code\Material</Filter>
     </ClInclude>
     <ClInclude Include="code\PostProcessing\ArmaturePopulate.h">
       <Filter>code\PostProcessing</Filter>
@@ -586,6 +598,12 @@
     </ClCompile>
     <ClCompile Include="code\Common\simd.cpp">
       <Filter>code\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Geometry\GeometryUtils.cpp">
+      <Filter>code\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="code\Material\MaterialSystem.cpp">
+      <Filter>code\Material</Filter>
     </ClCompile>
     <ClCompile Include="code\PostProcessing\ArmaturePopulate.cpp">
       <Filter>code\PostProcessing</Filter>

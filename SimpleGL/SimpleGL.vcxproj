@@ -116,6 +116,7 @@
     <ClInclude Include="SimpleGL\Core\Window.h" />
     <ClInclude Include="SimpleGL\Utility\BVH.h" />
     <ClInclude Include="SimpleGL\Utility\Camera.h" />
+    <ClInclude Include="SimpleGL\Utility\CameraController.h" />
     <ClInclude Include="SimpleGL\Utility\Intersect.h" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +132,7 @@
     <ClCompile Include="SimpleGL\Core\Window.cpp" />
     <ClCompile Include="SimpleGL\Utility\BVH.cpp" />
     <ClCompile Include="SimpleGL\Utility\Camera.cpp" />
+    <ClCompile Include="SimpleGL\Utility\CameraController.cpp" />
     <ClCompile Include="SimpleGL\Utility\Intersect.cpp" />
     <ClCompile Include="SimpleGL\Vendor\ImGuiBuild.cpp" />
     <ClCompile Include="SimpleGL\Vendor\StbBuild.cpp" />

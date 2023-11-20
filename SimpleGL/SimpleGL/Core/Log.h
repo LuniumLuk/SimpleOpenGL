@@ -19,7 +19,7 @@ namespace SGL {
 
         Log() {
             spdlog::set_pattern("%^[%T] %n: %v%$");
-            logger = spdlog::stdout_color_mt("FOCAL ENGINE");
+            logger = spdlog::stdout_color_mt("SIMPLE OPENGL");
             logger->set_level(spdlog::level::trace);
         }
     };
@@ -34,7 +34,7 @@ namespace SGL {
 #define SGL_LOG_FATAL(...)    SGL::Log::getLogger()->critical(__VA_ARGS__)
 
 #ifdef SGL_ENABLE_ASSERTS
-#    define SGL_ASSERT(x, ...) { if(!(x)) { SGL_LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#    define SGL_ASSERT(x, ...) { if(!(x)) { SGL_LOG_ERROR(__VA_ARGS__); __debugbreak(); } }
 #else
 #    define SGL_ASSERT(x, ...)
 #endif

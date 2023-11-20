@@ -48,6 +48,26 @@ namespace SGL {
         Model& operator=(Model const&) = delete;
         Model& operator=(Model&& other) = delete;
 
+        /*
+        * Vertex attributes are passed to shader as follows:
+        *   layout (location = 0) in vec3 aPosition;
+        *   layout (location = 1) in vec3 aNormal;
+        *   layout (location = 2) in vec2 aTexcoord;
+        *   layout (location = 3) in vec3 aTangent;
+        *   layout (location = 4) in vec3 aBitangent;
+        * Also it will automatically bind the following textures:
+        *   uniform sampler2D uDiffuseMap0;
+        *   uniform sampler2D uDiffuseMap1;
+        *   ...
+        *   uniform sampler2D uSpecularMap0;
+        *   ...
+        *   uniform sampler2D uNormalMap0;
+        *   ...
+        *   uniform sampler2D uHeightMap0;
+        *   ...
+        * Meanwhile, it will set the following uniforms:
+        *   uniform mat4 uModel;
+        */
         void draw(Shader* shader) noexcept;
         void drawInstanced(Shader* shader, uint32_t num, VertexBuffer* instanceBuffer = nullptr, uint32_t divisor = 0) noexcept;
 

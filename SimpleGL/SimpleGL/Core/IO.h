@@ -55,12 +55,20 @@ namespace SGL {
     }
 
 #pragma region Mouse Button Codes
+    #define BUTTON_PRESSED      GLFW_PRESS
+    #define BUTTON_RELEASED     GLFW_RELEASE
+    #define BUTTON_REPEAT       GLFW_REPEAT
+
     #define BUTTON_LEFT         GLFW_MOUSE_BUTTON_LEFT
     #define BUTTON_MIDDLE       GLFW_MOUSE_BUTTON_MIDDLE
     #define BUTTON_RIGHT        GLFW_MOUSE_BUTTON_RIGHT
 #pragma endregion
 
 #pragma region Key Codes
+    #define KEY_PRESSED         GLFW_PRESS
+    #define KEY_RELEASED        GLFW_RELEASE
+    #define KEY_REPEAT          GLFW_REPEAT
+
     #define KEY_UNKNOWN         -1
     #define KEY_SPACE           32
     #define KEY_APOSTROPHE      39 // '''

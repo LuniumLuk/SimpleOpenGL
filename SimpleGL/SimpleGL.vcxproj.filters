@@ -62,6 +62,9 @@
     <ClInclude Include="SimpleGL\Utility\Camera.h">
       <Filter>SimpleGL\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="SimpleGL\Utility\CameraController.h">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClInclude>
     <ClInclude Include="SimpleGL\Utility\Intersect.h">
       <Filter>SimpleGL\Utility</Filter>
     </ClInclude>
@@ -93,6 +96,9 @@
       <Filter>SimpleGL\Utility</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGL\Utility\Camera.cpp">
+      <Filter>SimpleGL\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGL\Utility\CameraController.cpp">
       <Filter>SimpleGL\Utility</Filter>
     </ClCompile>
     <ClCompile Include="SimpleGL\Utility\Intersect.cpp">

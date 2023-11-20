@@ -9,14 +9,14 @@
 
 namespace SGL {
 
-    Model::~Model() {
+    Model::~Model() noexcept {
         delete rootNode;
         for (auto& texture : textures) {
             delete texture.second;
         }
     }
 
-    Model::Node::~Node() {
+    Model::Node::~Node() noexcept {
         for (auto& mesh : meshes) {
             delete mesh;
         }
@@ -35,7 +35,7 @@ namespace SGL {
             node->meshes[i]->draw();
         }
 
-        for (uint32_t i = 0; i > node->children.size(); ++i) {
+        for (uint32_t i = 0; i < node->children.size(); ++i) {
             drawNode(shader, node->children[i]);
         }
     };
@@ -50,18 +50,18 @@ namespace SGL {
             node->meshes[i]->drawInstanced(num, instanceBuffer, 0, divisor);
         }
 
-        for (uint32_t i = 0; i > node->children.size(); ++i) {
+        for (uint32_t i = 0; i < node->children.size(); ++i) {
             drawNode(shader, node->children[i]);
         }
     };
 
     void Model::draw(Shader* shader) noexcept {
-        shader->setMat4("Model", transform);
+        shader->setMat4("uModel", transform);
         drawNode(shader, rootNode);
     }
 
     void Model::drawInstanced(Shader* shader, uint32_t num, VertexBuffer* instanceBuffer, uint32_t divisor) noexcept {
-        shader->setMat4("Model", transform);
+        shader->setMat4("uModel", transform);
         drawNodeInstanced(shader, rootNode, num, instanceBuffer, divisor);
     }
 
@@ -75,7 +75,7 @@ namespace SGL {
         std::vector<std::pair<std::string, Texture*>> textures;
         for (uint32_t i = 0; i < mat->GetTextureCount(type); i++) {
             auto filename = getAssimpTextureFilename(mat, i, type);
-            if (model->textures.find(filename) != model->textures.end()) {
+            if (model->textures.find(filename) == model->textures.end()) {
                 Texture* texture = new Texture2D(model->directory + filename);
                 model->textures.insert(std::make_pair(filename, texture));
             }
@@ -149,16 +149,16 @@ namespace SGL {
 
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
-        auto diffuseMaps = processAssimpMaterialTextures(model, material, aiTextureType_DIFFUSE, "texture_diffuse");
+        auto diffuseMaps = processAssimpMaterialTextures(model, material, aiTextureType_DIFFUSE, "uDiffuseMap");
         mNode->textures.insert(mNode->textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-        auto specularMaps = processAssimpMaterialTextures(model, material, aiTextureType_SPECULAR, "texture_specular");
+        auto specularMaps = processAssimpMaterialTextures(model, material, aiTextureType_SPECULAR, "uSpecularMap");
         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
-        auto normalMaps = processAssimpMaterialTextures(model, material, aiTextureType_NORMALS, "texture_normal");
+        auto normalMaps = processAssimpMaterialTextures(model, material, aiTextureType_NORMALS, "uNormalMap");
         textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
-        auto heightMaps = processAssimpMaterialTextures(model, material, aiTextureType_HEIGHT, "texture_height");
+        auto heightMaps = processAssimpMaterialTextures(model, material, aiTextureType_HEIGHT, "uHeightMap");
         textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
         mNode->meshes.push_back(new Mesh(
@@ -208,6 +208,14 @@ namespace SGL {
     }
 
     std::unique_ptr<Model> Model::loadTinyObjLoader(std::string const& path) noexcept {
+        struct Vertex {
+            glm::vec3 position;
+            glm::vec3 normal;
+            glm::vec2 texcoord;
+            glm::vec3 tangent;
+            glm::vec3 bitangent;
+        };
+
         auto model = std::make_unique<Model>();
         model->directory = path.substr(0, path.find_last_of('/') + 1);
         model->rootNode = new Node();
@@ -225,10 +233,6 @@ namespace SGL {
             SGL_LOG_WARN(reader.Warning());
         }
 
-        struct Vertex {
-            glm::vec3 position;
-        };
-
         std::vector<Vertex> vertices;
         std::vector<uint32_t> indices;
 
@@ -244,6 +248,7 @@ namespace SGL {
                 attrib.vertices[i * 3 + 1],
                 attrib.vertices[i * 3 + 2]
             );
+            vertices.push_back(vertex);
         }
 
         for (size_t s = 0; s < shapes.size(); s++) {
@@ -253,7 +258,25 @@ namespace SGL {
 
                 if (fv != 3) continue;
                 for (size_t v = 0; v < fv; v++) {
-                    indices.push_back(shapes[s].mesh.indices[index_offset + v].vertex_index);
+                    tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+                    int vidx = shapes[s].mesh.indices[index_offset + v].vertex_index;
+
+                    if (idx.normal_index >= 0) {
+                        vertices[vidx].normal = glm::vec3(
+                            attrib.normals[3 * size_t(idx.normal_index) + 0],
+                            attrib.normals[3 * size_t(idx.normal_index) + 1],
+                            attrib.normals[3 * size_t(idx.normal_index) + 2]
+                        );
+                    }
+
+                    if (idx.texcoord_index >= 0) {
+                        vertices[vidx].texcoord = glm::vec2(
+                            attrib.texcoords[2 * size_t(idx.texcoord_index) + 0],
+                            attrib.texcoords[2 * size_t(idx.texcoord_index) + 1]
+                        );
+                    }
+
+                    indices.push_back(vidx);
                 }
                 index_offset += fv;
             }
@@ -264,6 +287,10 @@ namespace SGL {
             static_cast<uint32_t>(vertices.size() * sizeof(Vertex)),
             VertexBufferLayout{
                 {DataType::Float3},
+                {DataType::Float3},
+                {DataType::Float2},
+                {DataType::Float3},
+                {DataType::Float3}
             },
             indices.data(),
             static_cast<uint32_t>(indices.size() * sizeof(uint32_t)),

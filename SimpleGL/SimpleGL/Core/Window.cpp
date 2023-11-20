@@ -1,11 +1,60 @@
 #include "PCH.h"
 
+#include "SimpleGL/Core/IO.h"
 #include "SimpleGL/Core/Window.h"
 #include "SimpleGL/Core/ImGuiHelper.h"
 #include "glad/glad.h"
 #include "glfw/glfw3.h"
 
 namespace SGL {
+
+    void InputState::registerCallbacks(Window* window) noexcept {
+
+        window->windowData.keyCallbacks.push_back(
+            [](int key, int action) {
+                InputState::instance().keyPressed[key] = (action != KEY_RELEASED);
+            });
+
+        window->windowData.mouseButtonCallbacks.push_back(
+            [](int button, int action) {
+                if (action == BUTTON_PRESSED) {
+                    if (button == BUTTON_RIGHT) {
+                        InputState::instance().rightButtonPressed = true;
+                    }
+                    else if (button == BUTTON_LEFT) {
+                        InputState::instance().leftButtonPressed = true;
+                    }
+                }
+                else if (action == BUTTON_RELEASED) {
+                    if (button == BUTTON_RIGHT) {
+                        InputState::instance().rightButtonPressed = false;
+                    }
+                    else if (button == BUTTON_LEFT) {
+                        InputState::instance().leftButtonPressed = false;
+                    }
+                }
+            });
+
+        window->windowData.scrollCallbacks.push_back(
+            [](double xoffset, double yoffset) {
+                InputState::instance().scrollDelta = (float)yoffset;
+            });
+
+        window->windowData.cursorPosCallbacks.push_back(
+            [](double xpos, double ypos) {
+                InputState::instance().mouseDeltaX = (float)xpos - InputState::instance().mouseLastX;
+                InputState::instance().mouseDeltaY = (float)ypos - InputState::instance().mouseLastY;
+                InputState::instance().mouseLastX = (float)xpos;
+                InputState::instance().mouseLastY = (float)ypos;
+            });
+
+    }
+
+    void InputState::resetDelta() noexcept {
+        InputState::instance().scrollDelta = 0.0f;
+        InputState::instance().mouseDeltaX = 0.0f;
+        InputState::instance().mouseDeltaY = 0.0f;
+    }
 
     Window::Window(WindowOption const& opt) {
         glfwInit();
@@ -153,6 +202,8 @@ namespace SGL {
         }
 
         handle = (void*)glfwHandle;
+
+        InputState::instance().registerCallbacks(this);
     }
 
     Window::~Window() {
@@ -171,6 +222,7 @@ namespace SGL {
 
     void Window::endframe() noexcept {
         endframeImGui();
+        InputState::instance().resetDelta();
         glfwSwapBuffers((GLFWwindow*)handle);
         glfwPollEvents();
     }

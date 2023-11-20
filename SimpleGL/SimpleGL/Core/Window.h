@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SimpleGL/Core/IO.h"
+
 namespace SGL {
 
     typedef void (*FramebufferSizeCallback)(int width, int height);
@@ -52,6 +54,43 @@ namespace SGL {
         bool queryMouseButtonPressed(int button) noexcept;
         void queryCursorPos(double* xpos, double* ypos) noexcept;
         void hideCursor(bool hide) noexcept;
+    };
+
+    /*
+    * Keep track of the input state of the window
+    * in order to avoid querying the state multiple times
+    */
+    struct InputState {
+
+        bool rightButtonPressed = false;
+        bool leftButtonPressed = false;
+        float scrollDelta = 0.0f;
+        float mouseDeltaX = 0.0f, mouseDeltaY = 0.0f;
+        float mouseLastX = 0.0f, mouseLastY = 0.0f;
+
+        bool keyPressed[KEY_LAST + 1] = { false };
+
+        /*
+        * Register only once, otherwise, the callbacks will be called multiple times
+        */
+        static void registerCallbacks(Window* window) noexcept;
+        /*
+        * Reset the delta values
+        */
+        static void resetDelta() noexcept;
+
+        static InputState& instance() noexcept {
+            static InputState state;
+            return state;
+        }
+
+    public:
+        InputState(InputState const&) = delete;
+        InputState& operator=(InputState const&) = delete;
+
+    private:
+        InputState() = default;
+
     };
 
 }

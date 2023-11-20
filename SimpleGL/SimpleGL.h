@@ -15,5 +15,11 @@
 #include "SimpleGL/Core/Buffer.h"
 #include "SimpleGL/Core/Texture.h"
 #include "SimpleGL/Core/Mesh.h"
+#include "SimpleGL/Core/Model.h"
 
 #include "SimpleGL/Core/ImGuiHelper.h"
+
+#include "SimpleGL/Utility/BVH.h"
+#include "SimpleGL/Utility/Intersect.h"
+#include "SimpleGL/Utility/Camera.h"
+#include "SimpleGL/Utility/CameraController.h"

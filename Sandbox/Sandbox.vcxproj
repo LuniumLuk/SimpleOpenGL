@@ -93,11 +93,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Apps\Common.h" />
-    <ClInclude Include="Apps\Triangle.h" />
+    <ClInclude Include="Demos\Common.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Apps\Triangle.cpp" />
+    <ClCompile Include="Demos\GeometryShader.cpp" />
+    <ClCompile Include="Demos\HelloTriangle.cpp" />
+    <ClCompile Include="Demos\NormalVector.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
